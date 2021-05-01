@@ -3,14 +3,12 @@ import {
   GraphView, IEdge, INode } from "react-digraph";
 import {
   default as nodeConfig,
-  EMPTY_EDGE_TYPE,
-  CUSTOM_EMPTY_TYPE,
+  WORKER_TYPE,
   NODE_KEY,
   POLY_TYPE,
-  SPECIAL_CHILD_SUBTYPE,
-  SPECIAL_EDGE_TYPE,
-  SPECIAL_TYPE,
-  SKINNY_TYPE
+  NORMAL_EDGE_TYPE,
+  BRANCH_TYPE,
+  ENDPOINT_TYPE
 } from "./config";
 import { State } from './Interfaces/IState';
 import { Graph } from './Interfaces/IGraph';
@@ -19,99 +17,78 @@ const sample: Graph = {
   edges: [
     {
       source: "start1",
-      target: "a1",
-      type: SPECIAL_EDGE_TYPE
-    },
-    {
-      source: "a1",
       target: "a2",
-      type: SPECIAL_EDGE_TYPE
+      type: NORMAL_EDGE_TYPE
     },
     {
       source: "a2",
+      target: "a1",
+      type: NORMAL_EDGE_TYPE
+    },
+    {
+      source: "a1",
       target: "a4",
-      type: EMPTY_EDGE_TYPE
+      type: NORMAL_EDGE_TYPE
     },
     {
       source: "a1",
       target: "a3",
-      type: EMPTY_EDGE_TYPE
+      type: NORMAL_EDGE_TYPE
     },
     {
       source: "a3",
-      target: "a4",
-      type: EMPTY_EDGE_TYPE
-    },
-    {
-      source: "a1",
-      target: "a5",
-      type: EMPTY_EDGE_TYPE
+      target: "end1",
+      type: NORMAL_EDGE_TYPE
     },
     {
       source: "a4",
-      target: "a1",
-      type: EMPTY_EDGE_TYPE
+      target: "end1",
+      type: NORMAL_EDGE_TYPE
     },
-    {
-      source: "a1",
-      target: "a6",
-      type: EMPTY_EDGE_TYPE
-    },
-    {
-      source: "a1",
-      target: "a7",
-      type: EMPTY_EDGE_TYPE
-    }
   ],
   nodes: [
     {
       id: "start1",
-      title: "Start (0)",
-      type: SPECIAL_TYPE
+      title: "Start",
+      type: ENDPOINT_TYPE,
+      x: 100,
+      y: 100,
     },
     {
       id: "a1",
       title: "Node A (1)",
-      type: SPECIAL_TYPE,
-      x: 258.3976135253906,
-      y: 331.9783248901367
+      type: BRANCH_TYPE,
+      x: 100,
+      y: 400
     },
     {
       id: "a2",
-      subtype: SPECIAL_CHILD_SUBTYPE,
       title: "Node B (2)",
-      type: CUSTOM_EMPTY_TYPE,
-      x: 593.9393920898438,
-      y: 260.6060791015625
+      type: WORKER_TYPE,
+      x: 100,
+      y: 250,
     },
     {
       id: "a3",
       title: "Node C (3)",
-      type: CUSTOM_EMPTY_TYPE,
-      x: 237.5757598876953,
-      y: 61.81818389892578
+      type: WORKER_TYPE,
+      x: 0,
+      y: 550,
     },
     {
       id: "a4",
       title: "Node D (4)",
-      type: CUSTOM_EMPTY_TYPE,
-      x: 600.5757598876953,
-      y: 600.81818389892578
+      type: WORKER_TYPE,
+      x: 200,
+      y: 550,
     },
     {
-      id: "a6",
-      title: "Node E (6)",
-      type: SKINNY_TYPE,
-      x: 300,
-      y: 600
+      id: "end1",
+      title: "End",
+      type: ENDPOINT_TYPE,
+      x: 100,
+      y: 700,
     },
-    {
-      id: "a7",
-      title: "Node F (7)",
-      type: POLY_TYPE,
-      x: 0,
-      y: 300
-    }
   ]
 };
 
@@ -151,7 +128,7 @@ const App = () => {
       {
         id: Date.now().toString(),
         title: "Node A",
-        type: SPECIAL_TYPE,
+        type: BRANCH_TYPE,
         x: e ? e.screenX : 0, //Find correct coordinates to drop
         y: e ? e.screenY : 0
       },
@@ -221,7 +198,7 @@ const App = () => {
     // could be used here to determine node type
     // There is also support for subtypes. (see 'sample' above)
     // The subtype geometry will underlay the 'type' geometry for a node
-    const type = Math.random() < 0.25 ? SPECIAL_TYPE : CUSTOM_EMPTY_TYPE;
+    const type = Math.random() < 0.25 ? BRANCH_TYPE : WORKER_TYPE;
     const viewNode = {
       id: Date.now(),
       title: "",
@@ -259,10 +236,7 @@ const App = () => {
     const graph = state.graph;
     // This is just an example - any sort of logic
     // could be used here to determine edge type
-    const type =
-      sourceViewNode.type === SPECIAL_TYPE
-        ? SPECIAL_EDGE_TYPE
-        : EMPTY_EDGE_TYPE;
+    const type = NORMAL_EDGE_TYPE;
 
     const viewEdge = {
       source: sourceViewNode[NODE_KEY],
