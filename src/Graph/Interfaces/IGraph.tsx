@@ -3,7 +3,7 @@ import {
     IEdge
   } from "react-digraph";
 
-export interface Graph {
+export interface IGraph {
     edges: IEdge[],
     nodes: INode[],
 };

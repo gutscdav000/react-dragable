@@ -11,90 +11,13 @@ import {
   ENDPOINT_TYPE
 } from "./config";
 import { State } from './Interfaces/IState';
-import { Graph } from './Interfaces/IGraph';
+import { IGraph } from './Interfaces/IGraph';
 
-const sample: Graph = {
-  edges: [
-    {
-      source: "start1",
-      target: "a2",
-      type: NORMAL_EDGE_TYPE
-    },
-    {
-      source: "a2",
-      target: "a1",
-      type: NORMAL_EDGE_TYPE
-    },
-    {
-      source: "a1",
-      target: "a4",
-      type: NORMAL_EDGE_TYPE
-    },
-    {
-      source: "a1",
-      target: "a3",
-      type: NORMAL_EDGE_TYPE
-    },
-    {
-      source: "a3",
-      target: "end1",
-      type: NORMAL_EDGE_TYPE
-    },
-    {
-      source: "a4",
-      target: "end1",
-      type: NORMAL_EDGE_TYPE
-    },
-  ],
-  nodes: [
-    {
-      id: "start1",
-      title: "Start",
-      type: ENDPOINT_TYPE,
-      x: 100,
-      y: 100,
-    },
-    {
-      id: "a1",
-      title: "Node A (1)",
-      type: BRANCH_TYPE,
-      x: 100,
-      y: 400
-    },
-    {
-      id: "a2",
-      title: "Node B (2)",
-      type: WORKER_TYPE,
-      x: 100,
-      y: 250,
-    },
-    {
-      id: "a3",
-      title: "Node C (3)",
-      type: WORKER_TYPE,
-      x: 0,
-      y: 550,
-    },
-    {
-      id: "a4",
-      title: "Node D (4)",
-      type: WORKER_TYPE,
-      x: 200,
-      y: 550,
-    },
-    {
-      id: "end1",
-      title: "End",
-      type: ENDPOINT_TYPE,
-      x: 100,
-      y: 700,
-    },
-  ]
-};
 
-const App = () => {
+
+const App = ({ inputGraph, openModal }: {inputGraph: IGraph, openModal: () => void }) => {
   const customNodeRef = useRef(null);
-  const [state, setState] = useState({graph: sample, selected: null} as State);
+  const [state, setState] = useState({graph: inputGraph, selected: null} as State);
 
   const getNodeIndex = (searchNode: INode) => {
     return state.graph.nodes.findIndex(node => {
@@ -168,7 +91,6 @@ const App = () => {
   const onSelectNode = (viewNode: INode | null, event: any) => {
     if(!event || !event.target) return;
 
-    console.log(viewNode)
     const { id = "" } = event.target;
     const e = event as Event & { target: HTMLInputElement }
     if (id.includes("text") && e && e.target) {
@@ -176,6 +98,7 @@ const App = () => {
       if(d)
         d.click()
     }
+    openModal();
     // Deselect events will send Null viewNode
     setState(prevState => ({
       ...prevState,
@@ -340,11 +263,7 @@ const App = () => {
   const selected = state.selected;
 
   return (
-    <div id="graph" style={{ height: "50rem" }}>
-      <button onClick={addStartNode}>Create Node</button>
-      <div draggable onDragEnd={e => addStartNode(e)}>
-        create on drag
-      </div>
+    <div id="graph" style={{ height: "100vh" }}>
       <GraphView
         showGraphControls={true}
         gridSize={100}

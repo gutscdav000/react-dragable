@@ -1,7 +1,7 @@
-import { Graph } from './IGraph';
+import { IGraph } from './IGraph';
 import { INode, IEdge } from 'react-digraph';
 
 export interface State {
-    graph: Graph,
+    graph: IGraph,
     selected: INode | IEdge | null,
 };
