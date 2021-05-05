@@ -13,6 +13,7 @@ import {
 } from "../../Graph/config";
 import Drawer from "./Drawer";
 import BaseModal from "./Modals/BaseModal";
+import WorkerModal from "./Modals/WorkerModal";
 
 const GraphPage = () => {
     const [state, setState] = React.useState({
@@ -122,12 +123,18 @@ const GraphPage = () => {
         <>
             <Drawer drawerOpen={state.drawerOpen} onClickaway={onCloseDrawer} />
             <Graph inputGraph={sample} openModal={openModal} />
-            <BaseModal
+            <WorkerModal
                 open={state.modalOpen}
                 onClose={onCloseModal}
                 onSubmit={onSubmit}
                 onOpenDrawer={onOpenDrawer}
             />
+            {/* <BaseModal
+                open={state.modalOpen}
+                onClose={onCloseModal}
+                onSubmit={onSubmit}
+                onOpenDrawer={onOpenDrawer}
+            /> */}
         </>
     );
 };

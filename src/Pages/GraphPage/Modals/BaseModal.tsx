@@ -23,7 +23,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 
-const styles = (theme: Theme) =>
+export const styles = (theme: Theme) =>
     createStyles({
         modal: {
             position: "absolute",
@@ -95,7 +95,8 @@ class BaseModal extends React.Component<
                             </IconButton>
                         </Grid>
                         <Grid container>
-                            <Grid item xs={12} key={"b1"}>
+                            {this.props.children}
+                            {/* <Grid item xs={12} key={"b1"}>
                                 Testing 1
                             </Grid>
                             <Grid item xs={12} key={"b2"}>
@@ -103,7 +104,7 @@ class BaseModal extends React.Component<
                             </Grid>
                             <Grid item xs={12} key={"b3"}>
                                 Testing 3
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </CardContent>
                 </Card>
