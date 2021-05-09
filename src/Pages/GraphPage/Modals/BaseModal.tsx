@@ -94,18 +94,7 @@ class BaseModal extends React.Component<
                                 <DeleteIcon />
                             </IconButton>
                         </Grid>
-                        <Grid container>
-                            {this.props.children}
-                            {/* <Grid item xs={12} key={"b1"}>
-                                Testing 1
-                            </Grid>
-                            <Grid item xs={12} key={"b2"}>
-                                Testing 2
-                            </Grid>
-                            <Grid item xs={12} key={"b3"}>
-                                Testing 3
-                            </Grid> */}
-                        </Grid>
+                        <Grid container>{this.props.children}</Grid>
                     </CardContent>
                 </Card>
             </Modal>

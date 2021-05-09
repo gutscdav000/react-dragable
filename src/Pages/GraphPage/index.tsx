@@ -120,22 +120,21 @@ const GraphPage = () => {
         setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
-        <>
+        <div data-test="graph-page">
             <Drawer drawerOpen={state.drawerOpen} onClickaway={onCloseDrawer} />
-            <Graph inputGraph={sample} openModal={openModal} />
+            <Graph
+                data-test="graph-class"
+                inputGraph={sample}
+                openModal={openModal}
+            />
             <WorkerModal
+                data-test="worker-modal"
                 open={state.modalOpen}
                 onClose={onCloseModal}
                 onSubmit={onSubmit}
                 onOpenDrawer={onOpenDrawer}
             />
-            {/* <BaseModal
-                open={state.modalOpen}
-                onClose={onCloseModal}
-                onSubmit={onSubmit}
-                onOpenDrawer={onOpenDrawer}
-            /> */}
-        </>
+        </div>
     );
 };
 
