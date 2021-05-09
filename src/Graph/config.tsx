@@ -30,101 +30,96 @@ export const ENDPOINT_TYPE = "endpoint";
 export const NORMAL_EDGE_TYPE = "normalEdge";
 
 export const nodeTypes = [
-  EMPTY_TYPE,
-  WORKER_TYPE,
-  POLY_TYPE,
-  BRANCH_TYPE,
-  ENDPOINT_TYPE,
+    EMPTY_TYPE,
+    WORKER_TYPE,
+    POLY_TYPE,
+    BRANCH_TYPE,
+    ENDPOINT_TYPE,
 ];
 export const edgeTypes = [NORMAL_EDGE_TYPE];
 export const nodeSubTypes = [];
 
 const EmptyNodeShape = (
-  <symbol viewBox="0 0 154 154" width="154" height="154" id="emptyNode">
-    <circle cx="77" cy="77" r="76" />
-  </symbol>
+    <symbol viewBox="0 0 154 154" width="154" height="154" id="emptyNode">
+        <circle cx="77" cy="77" r="76" />
+    </symbol>
 );
 
 const WorkerShape = (
-  <symbol viewBox="0 0 200 200" id="worker">
-    <circle cx="100" cy="100" r="50" />
-    <g>
-      <foreignObject width="100%" height="100%">
-        <div /*xmlns="http://www.w3.org/1999/xhtml"*/>test</div>
-      </foreignObject>
-    </g>
-  </symbol>
+    <symbol viewBox="0 0 200 200" id="worker">
+        <circle cx="100" cy="100" r="50" />
+        <g>
+            <foreignObject width="100%" height="100%">
+                <div /*xmlns="http://www.w3.org/1999/xhtml"*/>test</div>
+            </foreignObject>
+        </g>
+    </symbol>
 );
 
 const BranchShape = (
-  <symbol viewBox="-27 0 154 154" id="branch" width="154" height="154">
-    <rect transform="translate(50) rotate(45)" width="109" height="109" />
-  </symbol>
+    <symbol viewBox="-27 0 154 154" id="branch" width="154" height="154">
+        <rect transform="translate(50) rotate(45)" width="109" height="109" />
+    </symbol>
 );
 
 const PolyShape = (
-  <symbol viewBox="0 0 88 72" id="poly" width="88" height="88">
-    <path d="M 0 36 18 0 70 0 88 36 70 72 18 72Z" />
-  </symbol>
+    <symbol viewBox="0 0 88 72" id="poly" width="88" height="88">
+        <path d="M 0 36 18 0 70 0 88 36 70 72 18 72Z" />
+    </symbol>
 );
 
 const EndpointShape = (
-  <symbol
-    viewBox="0 0 154 54"
-    width="154"
-    height="54"
-    id="endpoint"
-  >
-    <rect x="0" y="0" rx="2" ry="2" width="154" height="54" />
-  </symbol>
+    <symbol viewBox="0 0 154 54" width="154" height="54" id="endpoint">
+        <rect x="0" y="0" rx="2" ry="2" width="154" height="54" />
+    </symbol>
 );
 
 const NormalEdgeShape = (
-  <symbol viewBox="0 0 50 50" id="normalEdge">
-    <rect
-      transform="rotate(45)"
-      x="27.5"
-      y="-7.5"
-      width="15"
-      height="15"
-      fill="currentColor"
-    />
-  </symbol>
+    <symbol viewBox="0 0 50 50" id="normalEdge">
+        <rect
+            transform="rotate(45)"
+            x="27.5"
+            y="-7.5"
+            width="15"
+            height="15"
+            fill="currentColor"
+        />
+    </symbol>
 );
 
 export default {
-  EdgeTypes: {
-    normalEdge: {
-      shape: NormalEdgeShape,
-      shapeId: "#normalEdge"
-    }
-  },
-  NodeSubtypes: {},
-  NodeTypes: {
-    empty: {
-      shape: EmptyNodeShape,
-      shapeId: "#empty",
-      typeText: "None"
+    EdgeTypes: {
+        normalEdge: {
+            shape: NormalEdgeShape,
+            shapeId: "#normalEdge",
+        },
     },
-    worker: {
-      shape: WorkerShape,
-      shapeId: "#worker",
-      typeText: "Worker"
+    NodeSubtypes: {},
+    NodeTypes: {
+        empty: {
+            shape: EmptyNodeShape,
+            shapeId: "#empty",
+            typeText: "None",
+        },
+        worker: {
+            shape: WorkerShape,
+            shapeId: "#worker",
+            typeText: "Worker",
+        },
+        branch: {
+            shape: BranchShape,
+            shapeId: "#branch",
+            typeText: "Branch",
+        },
+        endpoint: {
+            shape: EndpointShape,
+            shapeId: "#endpoint",
+            typeText: "Endpoint",
+        },
+        poly: {
+            shape: PolyShape,
+            shapeId: "#poly",
+            typeText: "Poly",
+        },
     },
-    branch: {
-      shape: BranchShape,
-      shapeId: "#branch",
-      typeText: "Branch"
-    },
-    endpoint: {
-      shape: EndpointShape,
-      shapeId: "#endpoint",
-      typeText: "Endpoint"
-    },
-    poly: {
-      shape: PolyShape,
-      shapeId: "#poly",
-      typeText: "Poly"
-    }
-  }
 };
