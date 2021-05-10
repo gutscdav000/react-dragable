@@ -22,6 +22,5 @@ test("renders withoutt crashing", () => {
 test("renders without error", () => {
     const wrapper: ShallowWrapper = shallow(<App />);
     const appComponent = findByTestAttr(wrapper, "component-app");
-    console.log(appComponent);
     expect(appComponent).toHaveLength(1);
 });

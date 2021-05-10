@@ -101,10 +101,16 @@ const GraphPage = () => {
     };
 
     const openModal = () =>
-        setState((prevState) => ({ ...prevState, modalOpen: true }));
+        setState({
+            modalOpen: true,
+            drawerOpen: false,
+        });
 
     const onCloseModal = () =>
-        setState((prevState) => ({ ...prevState, modalOpen: false }));
+        setState((prevState) => ({
+            drawerOpen: prevState.drawerOpen,
+            modalOpen: false,
+        }));
 
     const onSubmit = () =>
         setState((prevState) => ({
@@ -114,10 +120,16 @@ const GraphPage = () => {
         }));
 
     const onOpenDrawer = () =>
-        setState((prevState) => ({ ...prevState, drawerOpen: true }));
+        setState((prevState) => ({
+            modalOpen: prevState.modalOpen,
+            drawerOpen: true,
+        }));
 
     const onCloseDrawer = () =>
-        setState((prevState) => ({ ...prevState, drawerOpen: false }));
+        setState((prevState) => ({
+            modalOpen: prevState.modalOpen,
+            drawerOpen: false,
+        }));
 
     return (
         <div data-test="graph-page">
@@ -126,6 +138,7 @@ const GraphPage = () => {
                 data-test="graph-class"
                 inputGraph={sample}
                 openModal={openModal}
+                state={state}
             />
             <WorkerModal
                 data-test="worker-modal"
