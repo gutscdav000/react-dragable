@@ -1,4 +1,4 @@
-export default function userReducer(
+export default function graphReducer(
     state = {
         user: undefined,
         userSuccess: false,

@@ -131,14 +131,24 @@ const GraphPage = () => {
             drawerOpen: false,
         }));
 
+    const onCreateNode = (nodeType: String) => {
+        onCloseDrawer();
+        onCloseModal();
+        console.log("create node: ", nodeType);
+    };
+
     return (
         <div data-test="graph-page">
-            <Drawer drawerOpen={state.drawerOpen} onClickaway={onCloseDrawer} />
+            <Drawer
+                drawerOpen={state.drawerOpen}
+                onClickaway={onCloseDrawer}
+                onCreateNode={onCreateNode}
+                nodeTypes={[WORKER_TYPE, POLY_TYPE, BRANCH_TYPE]}
+            />
             <Graph
                 data-test="graph-class"
                 inputGraph={sample}
                 openModal={openModal}
-                state={state}
             />
             <WorkerModal
                 data-test="worker-modal"
